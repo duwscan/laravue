@@ -164,7 +164,11 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/clipboard/index'),
         name: 'ClipboardDemo',
-        meta: { title: 'clipboardDemo', icon: 'clipboard', roles: ['admin', 'manager', 'editor', 'user'] },
+        meta: {
+          title: 'clipboardDemo',
+          icon: 'clipboard',
+          roles: ['admin', 'manager', 'editor', 'user'],
+        },
       },
     ],
   },
@@ -218,6 +222,24 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: '/guest',
+    component: Layout,
+    redirect: '/guest/index',
+    name: 'guest',
+    meta: {
+      title: 'guest',
+      icon: 'star',
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'guest',
+        component: () => import('@/views/guest/homeguest.vue'),
+        meta: { title: 'guest', permissions: ['view home page'] },
+      },
+    ],
+  },
+  {
     path: '/external-link',
     component: Layout,
     children: [
@@ -230,12 +252,13 @@ export const asyncRoutes = [
   { path: '*', redirect: '/404', hidden: true },
 ];
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  base: process.env.MIX_LARAVUE_PATH,
-  routes: constantRoutes,
-});
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    base: process.env.MIX_LARAVUE_PATH,
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 
