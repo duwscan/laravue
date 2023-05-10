@@ -1,9 +1,9 @@
 <?php
 
+use App\Laravue\Models\Role;
 use App\Laravue\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Laravue\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -53,7 +53,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             RoleSeeder::class,
-            PermissionSeeder::class
+            PermissionSeeder::class,
+            GuestPermission::class,
         ]);
 
     }
