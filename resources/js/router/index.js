@@ -229,13 +229,14 @@ export const asyncRoutes = [
     meta: {
       title: 'guest',
       icon: 'star',
+      permissions: ['view home page'],
     },
     children: [
       {
         path: 'index',
         name: 'guest',
         component: () => import('@/views/guest/homeguest.vue'),
-        meta: { title: 'guest', permissions: ['view home page'] },
+        meta: { title: 'guest' },
       },
     ],
   },
