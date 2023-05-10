@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Laravue\Acl;
 use App\Laravue\Models\Role;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
@@ -73,6 +73,7 @@ class UsersTableSeeder extends Seeder
                 Acl::ROLE_EDITOR,
                 Acl::ROLE_USER,
                 Acl::ROLE_VISITOR,
+                Acl::ROLE_GUEST,
             ]);
             $user = \App\Laravue\Models\User::create([
                 'name' => $fullName,
