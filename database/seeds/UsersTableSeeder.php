@@ -2,6 +2,7 @@
 
 use App\Laravue\Acl;
 use App\Laravue\Models\Role;
+use Faker\Factory as FakerFactory;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -82,6 +83,26 @@ class UsersTableSeeder extends Seeder
             ]);
 
             $role = Role::findByName($roleName);
+            $user->syncRoles($role);
+        }
+        $faker = FakerFactory::create();
+        for ($i = 0; $i < 10; $i++) {
+            $user = \App\Laravue\Models\User::create([
+                'name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
+                'password' => \Illuminate\Support\Facades\Hash::make('laravue'),
+            ]);
+
+            for ($j = 0; $j < 5; $j++) {
+                $user->posts()->create([
+                    'title' => $faker->sentence,
+                    'content' => $faker->paragraph,
+                ]);
+            }
+            $roleName = \App\Laravue\Faker::randomInArray([
+                Acl::ROLE_USER,
+                Acl::ROLE_GUEST,
+            ]);
             $user->syncRoles($role);
         }
     }
