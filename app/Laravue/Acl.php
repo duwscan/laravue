@@ -37,10 +37,12 @@ final class Acl
     const PERMISSION_VIEW_MENU_ZIP = 'view menu zip';
     const PERMISSION_VIEW_MENU_PDF = 'view menu pdf';
     const PERMISSION_VIEW_MENU_I18N = 'view menu i18n';
-
     const PERMISSION_USER_MANAGE = 'manage user';
     const PERMISSION_ARTICLE_MANAGE = 'manage article';
     const PERMISSION_PERMISSION_MANAGE = 'manage permission';
+    const PERMISSION_VIEW_HOME_PAGE = 'view home page';
+    const PERMISSION_POSTS_MANAGE = 'manage post';
+    const PERMISSION_VIEW_MENU_POSTS = 'view posts';
 
     /**
      * @param array $exclusives Exclude some permissions from the list

@@ -14,5 +14,6 @@ class PermissionSeeder extends Seeder
     {
         //
         Permission::findOrCreate('view home page', 'api');
+        Permission::findOrCreate('manage post', 'api');
     }
 }

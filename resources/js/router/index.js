@@ -241,6 +241,24 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: '/mange-posts',
+    component: Layout,
+    redirect: '/mange-posts/index',
+    name: 'mange-posts',
+    meta: {
+      title: 'mange-posts',
+      permissions: ['view posts'],
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'mange-posts',
+        component: () => import('@/views/posts/List.vue'),
+        meta: { title: 'Posts' },
+      },
+    ],
+  },
+  {
     path: '/external-link',
     component: Layout,
     children: [

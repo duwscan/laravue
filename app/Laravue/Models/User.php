@@ -2,10 +2,11 @@
 
 namespace App\Laravue\Models;
 
-use Illuminate\Notifications\Notifiable;
+use App\Laravue\Models\Post;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password',
     ];
 
     /**
@@ -98,5 +99,18 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function notUser()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->notUser()) {
+                return true;
+            }
+        }
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
