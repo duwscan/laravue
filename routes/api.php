@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Resources\UserResource;
-use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\PostController;
-use \App\Laravue\Acl;
 use \App\Laravue\Faker;
 use \App\Laravue\JsonResponse;
+use \App\Laravue\Acl;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +16,9 @@ use \App\Laravue\JsonResponse;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
- */
+*/
 
-Route::namespace('Api')->group(function () {
+Route::namespace('Api')->group(function() {
     Route::post('auth/login', 'AuthController@login');
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Auth routes
@@ -39,17 +37,8 @@ Route::namespace('Api')->group(function () {
         // Custom routes
         Route::put('users/{user}', 'UserController@update');
         Route::get('users/{user}/permissions', 'UserController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
-        Route::put('users/{user}/permissions', 'UserController@updatePermissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
+        Route::put('users/{user}/permissions', 'UserController@updatePermissions')->middleware('permission:' .Acl::PERMISSION_PERMISSION_MANAGE);
         Route::get('roles/{role}/permissions', 'RoleController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
-
-        // post routes
-        Route::get('posts', [PostController::class, 'index'])->middleware('permission:' . Acl::PERMISSION_VIEW_MENU_POSTS);
-        Route::group(['middleware' => 'permission:' . Acl::PERMISSION_VIEW_MENU_POSTS], function () {
-            Route::post('posts', [PostController::class, 'store'])->middleware('permission:' . Acl::PERMISSION_POSTS_MANAGE);
-            Route::get('posts/{id}', [PostController::class, 'show'])->middleware('permission:' . Acl::PERMISSION_POSTS_MANAGE);
-            Route::delete('posts/{id}', [PostController::class, 'destroy'])->middleware('permission:' . Acl::PERMISSION_POSTS_MANAGE);
-            Route::post('update-post/{id}', [PostController::class, 'update'])->middleware('permission:' . Acl::PERMISSION_POSTS_MANAGE);
-        });
     });
 });
 

@@ -54,6 +54,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
+            GuestPermission::class,
         ]);
+
     }
 }
