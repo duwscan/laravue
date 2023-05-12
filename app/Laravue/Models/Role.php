@@ -30,4 +30,9 @@ class Role extends \Spatie\Permission\Models\Role
     {
         return $this->name === Acl::ROLE_ADMIN;
     }
+
+    public function notUser(): bool
+    {
+        return $this->name !== Acl::ROLE_USER;
+    }
 }
