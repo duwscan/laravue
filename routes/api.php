@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StripeController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -42,9 +43,11 @@ Route::namespace('Api')->group(function () {
         Route::get('roles/{role}/permissions', 'RoleController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         // payment route
         Route::post('/payment-stripe', [StripeController::class, 'payment']);
+
     });
 });
-
+// product route
+Route::get('/products', [ProductController::class, 'index']);
 // Fake APIs
 Route::get('/table/list', function () {
     $rowsNumber = mt_rand(20, 30);

@@ -1,21 +1,21 @@
 import Layout from '@/layout';
 
 const paymentRoutes = {
-  path: '/payment',
+  path: '/products',
   component: Layout,
-  redirect: '/payment',
-  name: 'Payment',
+  redirect: '/products',
+  name: 'Products',
   meta: {
-    title: 'payment',
+    title: 'Products',
     icon: 'cash',
     permissions: [],
   },
   children: [
     {
       path: '/stripe',
-      component: () => import('@/views/payment/Payment.vue'),
-      name: 'PaymentStripe',
-      meta: { title: 'Stripe Payment' },
+      component: () => import('@/views/products/Products.vue'),
+      name: 'Products',
+      meta: { title: 'Products' },
     },
   ],
 };

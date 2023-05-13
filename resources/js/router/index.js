@@ -22,7 +22,7 @@ import nestedRoutes from './modules/nested';
 import errorRoutes from './modules/error';
 import excelRoutes from './modules/excel';
 import permissionRoutes from './modules/permission';
-import paymentRoutes from './modules/payment';
+import productsRoute from './modules/products';
 /**
  * Sub-menu only appear when children.length>=1
  * @see https://doc.laravue.dev/guide/essentials/router-and-nav.html
@@ -141,7 +141,7 @@ export const asyncRoutes = [
   nestedRoutes,
   tableRoutes,
   adminRoutes,
-  paymentRoutes,
+  productsRoute,
   {
     path: '/theme',
     component: Layout,
